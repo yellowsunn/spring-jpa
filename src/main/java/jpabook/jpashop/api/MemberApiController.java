@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -47,6 +48,14 @@ public class MemberApiController {
         Member findMember = memberService.findOne(id);
 
         return new UpdateMemberResponse(findMember.getId(), findMember.getName());
+    }
+
+    /**
+     * 조회 v1: 안 좋은 버전, 모든 엔티티가 노출, @JsonIgnore -> 이건 정말 최악, api가 이거 하나인가! 화면에 종속적이지 마라!
+     */
+    @GetMapping("/api/v1/members")
+    public List<Member> membersV1() {
+        return memberService.findMembers();
     }
 
     @Data

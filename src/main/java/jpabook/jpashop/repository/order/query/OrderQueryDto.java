@@ -4,16 +4,19 @@ import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(of = "orderId")
+@AllArgsConstructor
 public class OrderQueryDto {
 
     private Long orderId;
     private String name;
-    private LocalDateTime orderDate; //주문 시
+    private LocalDateTime orderDate; //주문 시간
     private OrderStatus orderStatus;
     private Address address;
     private List<OrderItemQueryDto> orderItems;
